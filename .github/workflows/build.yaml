@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up date, version
+      - name: Set up date and version
         id: vars
         run: |
           TIMESTAMP=$(date +'%Y.%m.%d.%H.%M')
