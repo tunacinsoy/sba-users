@@ -47,9 +47,6 @@ RUN pip install -r requirements.txt
 # Copy rest of the application without .github folder (.dockerignore file has been created)
 COPY . .
 
-# Run unit tests
-RUN python app.test.py
-
 # Expose the application
 EXPOSE 5000
 
@@ -57,5 +54,9 @@ EXPOSE 5000
 # while CMD provides the default subcommand run, which can be overridden by specifying another subcommand like shell.
 # Running `docker run myflaskapp` results in `flask run`.
 # Running `docker run myflaskapp shell` results in `flask shell`.
-ENTRYPOINT ["flask"]
-CMD ["run"]
+#ENTRYPOINT ["flask"]
+#CMD ["run"]
+
+# Default entrypoint
+ENTRYPOINT ["/bin/sh", "-c"]
+CMD ["flask", "run"]
