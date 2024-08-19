@@ -1,7 +1,7 @@
 # With this updated Dockerfile, the image size is reduced from 221MB to 83.8MB while performing the same functionality
 
 # Setting the base image
-FROM python:3.13.0b4-alpine3.20
+FROM python:alpine3.19
 
 # Setting environment variables
 ENV FLASK_APP=app.py
@@ -26,7 +26,7 @@ ENV FLASK_RUN_HOST=0.0.0.0
 # Why Needed: While not always required, some packages might need to interact with kernel-specific features or rely on kernel headers for certain operations.
 # Example: This is less common but can be necessary for packages that deal with low-level system operations or network functionalities.
 # However, we do not need any of these packages, so we can ignore this directive.
-# RUN apk add --no-cache gcc musl-dev linux-headers
+RUN apk add --no-cache gcc musl-dev linux-headers
 
 # Changing working directory to segregate the application
 WORKDIR /app
@@ -58,5 +58,5 @@ EXPOSE 5000
 #CMD ["run"]
 
 # Default entrypoint
-ENTRYPOINT ["/bin/sh", "-c"]
+# ENTRYPOINT ["/bin/sh", "-c"]
 CMD ["flask", "run"]
